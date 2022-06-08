@@ -48,6 +48,10 @@ gem 'bootstrap'
 
 gem 'rails-i18n'
 
+gem 'faker'
+
+gem 'awesome_print'
+
 # Use Sass to process CSS
 gem "sassc-rails"
 
