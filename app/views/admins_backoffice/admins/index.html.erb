@@ -5,7 +5,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Email</th>
-      <th></th>
+      <th><%= link_to 'Novo', new_admins_backoffice_admin_path%></th>
     </tr>
   </thead>
   <tbody>
@@ -13,8 +13,10 @@
         <tr>
         <th scope="row"><%= admin.id%></th>
         <td><%= admin.email%></td>
-        <td><%= link_to 'Editar', edit_admins_backoffice_admin_path(admin)#transforma id especifico em parametro%></td>
+        <!-- transforma id especifico em parametro -->
+        <td><%= link_to 'Editar', edit_admins_backoffice_admin_path(admin)%></td>
         </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @admins%>

@@ -52,6 +52,8 @@ gem 'faker'
 
 gem 'awesome_print'
 
+gem 'kaminari'
+
 # Use Sass to process CSS
 gem "sassc-rails"
 

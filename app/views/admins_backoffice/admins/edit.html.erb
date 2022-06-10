@@ -1,3 +1,5 @@
-<h1>Editando</h1>
+<%= render partial: 'admins_backoffice/admins/shared/form'%>
 
-<%= @admin.inspect %>
+
+ <p></p>
+  <%= button_to 'Excluir', admins_backoffice_admin_path(@admin), method: :delete, class:"btn btn-primary" %>
