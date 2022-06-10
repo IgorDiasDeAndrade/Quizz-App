@@ -1,4 +1,8 @@
 namespace :dev do
+
+  DEFAULT_FILES_PATH = File.join(Rails.root, 'lib', 'tmp')
+
+
   desc "TODO"
   task setup: :environment do
     if Rails.env.development?
@@ -37,6 +41,16 @@ namespace :dev do
       password: 123456,
       password_confirmation: 123456
     )
+  end
+  
+  desc "Adiciona assuntos padrão"
+  task add_subjects: :environment do
+    file_name = 'subjects.txt'
+    file_path = File.join(DEFAULT_FILES_PATH, file_name)
+
+    File.open(file_path, 'r').each do |line|
+      Subject.create!(description: line.strip)
+    end
   end
 
 end

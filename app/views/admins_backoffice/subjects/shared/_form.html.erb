@@ -1,0 +1,20 @@
+<h1>Editando</h1>
+
+<%= form_with(model: [:admins_backoffice, @subject]) do |form|%>
+
+  <% if @subject.errors.any? %>
+     <div class="alert alert-warning alert-dismissible fade show" role="alert">
+         <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
+  <% end %>
+ 
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, class:"form-control", placeholder:"Enter email" %>
+    
+  </div>
+  <p></p>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+<%end%>
