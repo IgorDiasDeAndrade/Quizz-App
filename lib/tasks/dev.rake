@@ -7,7 +7,7 @@ namespace :dev do
   task setup: :environment do
     if Rails.env.development?
 
-      %x(rails db:drop db:create db:migrate dev:add_admins dev:add_users)
+      %x(rails db:drop db:create db:migrate dev:add_admins dev:add_users dev:add_extra_admins dev:add_subjects dev:add_answers_and_questions)
 
     else
       puts "Você não está em ambiente de desenvolvimento!"
@@ -58,7 +58,7 @@ namespace :dev do
     Subject.all.each do |subject|
       rand(1..3).times do |i|
         Question.create!(
-          description: "#{Faker::Lorem.paragraphs} #{Faker::Lorem.question}",
+          description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
           subject: subject
         )
       end
