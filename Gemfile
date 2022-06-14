@@ -54,6 +54,8 @@ gem 'awesome_print'
 
 gem 'kaminari'
 
+gem 'cocoon'
+
 # Use Sass to process CSS
 gem "sassc-rails"
 

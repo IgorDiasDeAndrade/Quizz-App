@@ -25,7 +25,7 @@
     <%= form.fields_for :answers do |answer|%>
       <%= render partial: "answer_fields", locals: {f: answer}%>
     <%end%>
-    
+    <%= link_to_add_association '[Adicionar resposta]', form, :answers%>
   </div>
   
   <p></p>

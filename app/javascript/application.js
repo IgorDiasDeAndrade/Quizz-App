@@ -4,3 +4,4 @@ import "controllers"
 
 import "popper"
 import "bootstrap"
+import "@nathanvda/cocoon"
