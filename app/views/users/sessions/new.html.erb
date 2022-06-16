@@ -1,30 +1,70 @@
-<h2>Log in - Users</h2>
+<!-- Section: Design Block -->
+<section class="">
+  <!-- Jumbotron -->
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h1 class="my-5 display-3 fw-bold ls-tight">
+            User login <br />
+            <span class="text-primary">for Quizz-App</span>
+          </h1>
+          <p style="color: hsl(217, 10%, 50.8%)">
+            <%texts = Faker::Lorem.paragraphs %>
+            <%texts.each do |text|%>
+              <%= text%>
+            <%end%>
+          </p>
+        </div>
 
-<% flash.each do |key, value| %>
-        <div class="flash <%= key %>"> <%= value %> </div>
-<% end %>
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card">
+            <div class="card-body py-5 px-md-5">
+              <% flash.each do |key, value| %>
+                <div class="flash <%= key %>"> <%= value %> </div>
+              <% end %>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+                <!-- Email input -->
+                <div class="form-outline mb-4">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+                  <%= f.label :email, class:"form-label" %><br />
+                  
+                </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <%= f.password_field :password, autofocus: true, autocomplete: "password", class:"form-control" %>
+                  <%= f.label :password, class:"form-label" %><br />
+                </div>
+
+                <!-- Checkbox -->
+                <div class="form-check d-flex justify-content-center mb-4">
+                  <% if devise_mapping.rememberable? %>
+                    <div class="field">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %>
+                    </div>
+                  <% end %>
+                </div>
+
+                <!-- Submit button -->
+                <div class="actions">
+                  <%= f.submit "Log in", class:"btn btn-primary btn-block mb-4" %>
+                </div>
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <%= render "users/shared/links" %>
+                </div>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
