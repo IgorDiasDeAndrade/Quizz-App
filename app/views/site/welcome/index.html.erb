@@ -9,6 +9,7 @@
 
 <% if admin_signed_in? %>
     <p>Admin logado: <%= current_admin.email %></p>
+    <%= link_to "Backoffice", '/admins_backoffice/welcome/index'%>
 <%else%>
     <p>Admin não logado</p>
 <% end %>

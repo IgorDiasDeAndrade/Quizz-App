@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Crypto Wallet</a>
+    <a class="navbar-brand" href="#">Quizz-App</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,20 +14,24 @@
           <a class="nav-link" href="#">Link</a>
         </li>
       </ul>
-
-      <div class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Languages
+      <% if user_signed_in? %>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" style="color:white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%=current_user.email%>
           </a>
-
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            
-            <%= link_to "Português", '/?locale=pt-BR', class:"dropdown-item"%>
-            <%= link_to "English", '/?locale=en', class:"dropdown-item"%>
-           
-            
+            <li><%= link_to "Perfil", users_backoffice_welcome_index_path, class:"dropdown-item"%>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to "Logout", destroy_user_session_path, class:"dropdown-item"%></li>
           </ul>
         </div>
+      <%else%>
+        <%= link_to "Entrar", new_user_session_path, class:"nav-link", style:"color:white"%>
+        <%= link_to "Cadastro", new_user_registration_path, class:"nav-link", style:"color:white"%>
+        
+      <% end %>
+
+      
       
     </div>
   </div>
