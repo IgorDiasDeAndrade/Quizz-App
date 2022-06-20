@@ -1,5 +1,21 @@
 <h1>Site::Welcome#index</h1>
 <p>Find me in app/views/site/welcome/index.html.erb</p>
+<% @questions.each do |question|%>
+    <div class="card">
+    <div class="card-header">
+        Answer this question
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><%= question.description%></h5>
+        <p class="card-text">
+        <%question.answers.each do |answer|%>
+        <li><%=answer.description%></li>            
+        <%end%>
+        </p>
+        <a href="#" class="btn btn-primary">Answer</a>
+    </div>
+    </div>
+<%end%>
 
 <% if user_signed_in? %>
     <p>Usuário logado: <%= current_user.email %></p>
