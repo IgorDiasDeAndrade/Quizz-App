@@ -1,9 +1,15 @@
 <h1>Site::Welcome#index</h1>
 <p>Find me in app/views/site/welcome/index.html.erb</p>
+<%unless params[:term]%>
+    <h3>Latest questions</h3>
+<%else%>
+    <h3>Results for "<%=params[:term]%>":</h3>
+<%end%>
+
 <% @questions.each do |question|%>
     <div class="card">
     <div class="card-header">
-        Answer this question
+        Question subject: <%=question.subject.description%>
     </div>
     <div class="card-body">
         <h5 class="card-title"><%= question.description%></h5>

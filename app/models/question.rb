@@ -5,4 +5,15 @@ class Question < ApplicationRecord
 
   #kaminari
   paginates_per 5
+
+  #scope e um metodo rails usado para pesquisas em banco de dados
+  scope :_search_, -> (page, term){
+    includes(:answers)
+    .where("lower(description) LIKE ?", "%#{term.downcase}%")
+    .page(page)
+  }
+
+  scope :last_questions, ->(page) {
+    Question.includes(:answers).order('created_at desc').page(page)
+  }
 end
