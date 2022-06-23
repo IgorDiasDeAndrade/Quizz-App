@@ -1,15 +1,17 @@
 <%unless params[:term]%>
     <h3>Latest questions</h3>
 <%else%>
-    <h3>Results for ``"<%=params[:term]%>":</h3>
+    <h3>Results for "<%=params[:term]%>":</h3>
 <%end%>
 
 <% @questions.each do |question|%>
-    <%= form_with url: site_answer_path, local: true do |form|%>
+    <%= form_with url: site_answer_path do |form|%>
     
         <div class="card">
         <div class="card-header">
-            Question subject: <%=question.subject.description%>
+            <span class="badge bg-dark">
+             <%=link_to question.subject.description, site_search_subject_path(question.subject_id), style:"color: white"%>
+            </span>
         </div>
         <div class="card-body">
             <h5 class="card-title"><%= question.description%></h5>
@@ -17,15 +19,15 @@
             <%question.answers.each do |answer|%>
 
                 <div class="form-check">
-                    <%= radio_button_tag 'answer', answer.id%>
+                    <%= radio_button_tag 'answer_id', answer.id%>
                     <label class="form-check-label" for="flexRadioDefault1">
                         <%=answer.description%> 
                     </label>
-                </div>
-                            
+                </div>                            
             <%end%>
             </p>
-            <%= form.submit "Answer", class:"btn btn-primary"%>
+            <%= form.submit "Answer", class:"btn btn-primary", id:"submit_#{question.id}"%>
+
         </div>
         </div>
     <%end%>

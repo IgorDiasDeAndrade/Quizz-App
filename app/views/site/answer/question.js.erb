@@ -1,0 +1,12 @@
+var element = document.getElementById('submit_<%=@answer.question_id%>');
+
+element.classList.remove('btn btn-primary');
+element.classList.remove('btn btn-success');
+element.classList.remove('btn btn-danger');
+
+
+if (<%= @answer.correct %>){
+    element.classList.add('btn btn-success');
+} else {
+    element.classList.add('btn btn-danger');
+}
