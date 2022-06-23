@@ -1,8 +1,18 @@
-<%unless params[:term]%>
-    <h3>Latest questions</h3>
+<h1><%= msg_questions %></h1>
+<!--
+<% if user_signed_in? %>
+    <p>Usuário logado: <%= current_user.email %></p>
 <%else%>
-    <h3>Results for "<%=params[:term]%>":</h3>
-<%end%>
+    <p>Usuário não logado</p>
+<% end %>
+
+<% if admin_signed_in? %>
+    <p>Admin logado: <%= current_admin.email %></p>
+    <%= link_to "Backoffice", '/admins_backoffice/welcome/index'%>
+<%else%>
+    <p>Admin não logado</p>
+<% end %>
+-->
 
 <% @questions.each do |question|%>
     <%= form_with url: site_answer_path do |form|%>
@@ -10,7 +20,7 @@
         <div class="card">
         <div class="card-header">
             <span class="badge bg-dark">
-             <%=link_to question.subject.description, site_search_subject_path(question.subject_id), style:"color: white"%>
+             <%=link_to "#{question.subject.description} (#{question.subject.questions.count})", site_search_subject_path(question.subject_id, question.subject.description), style:"color: white"%>
             </span>
         </div>
         <div class="card-body">
@@ -33,15 +43,3 @@
     <%end%>
 <%end%>
 
-<% if user_signed_in? %>
-    <p>Usuário logado: <%= current_user.email %></p>
-<%else%>
-    <p>Usuário não logado</p>
-<% end %>
-
-<% if admin_signed_in? %>
-    <p>Admin logado: <%= current_admin.email %></p>
-    <%= link_to "Backoffice", '/admins_backoffice/welcome/index'%>
-<%else%>
-    <p>Admin não logado</p>
-<% end %>

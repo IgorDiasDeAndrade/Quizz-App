@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  belongs_to :subject
+  belongs_to :subject, counter_chache: true
   has_many :answers
   accepts_nested_attributes_for :answers
 
@@ -8,7 +8,7 @@ class Question < ApplicationRecord
 
   #scope e um metodo rails usado para pesquisas em banco de dados
   scope :_search_subject_, -> (page, subject_id){
-    includes(:answers)
+    includes(:answers, :subject)
     .where(subject_id: subject_id)
     .page(page)
   }
