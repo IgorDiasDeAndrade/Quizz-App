@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  belongs_to :subject, counter_chache: true
+  belongs_to :subject, counter_cache: true
   has_many :answers
   accepts_nested_attributes_for :answers
 
