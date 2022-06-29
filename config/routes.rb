@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get 'welcome/index'
   end
   devise_for :users
-  devise_for :admins
+  devise_for :admins, skip: [:registrations]
 
   get 'inicio', to: 'site/welcome#index'
   root to: 'site/welcome#index'
