@@ -1,0 +1,60 @@
+<div class="container py-5">
+    <h1>Editing User Profile of <%= @user.first_name == nil ? @user.email : @user.full_name%></h1>
+    
+    <p></p>
+    <%= form_with(url: users_backoffice_profile_path, model: @user, local: true) do |form|%>
+        <div class="row gx-lg-5 align-items-left">
+            <div class="row g-3 align-items-center">
+                <div class="col-form-label col-md-1 col-sm-3 label-align">
+                    <%= form.label :first_name, class:"col-form-label"%>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <%= form.text_field :first_name, class:"form-control"%>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-form-label col-md-1 col-sm-3 label-align">
+                    <%= form.label :last_name, class:"col-form-label"%>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <%= form.text_field :last_name, class:"form-control"%>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-form-label col-md-1 col-sm-3 label-align">
+                    <%= form.label :email, class:"col-form-label"%>
+                </div>
+                <div class="col-md-5 col-sm-6">
+                    <%= form.text_field :email, class:"form-control", readonly: true%>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-form-label col-md-1 col-sm-3 label-align">
+                    <%= form.label :password, class:"col-form-label"%>
+                </div>
+                <div class="col-md-5 col-sm-6">
+                    <%= form.password_field :password, class:"form-control"%>
+                </div>
+            </div>
+
+                        <div class="row g-3 align-items-center">
+                <div class="col-form-label col-md-1 col-sm-3 label-align">
+                    <%= form.label :password_confirmation, class:"col-form-label"%>
+                </div>
+                <div class="col-md-5 col-sm-6">
+                    <%= form.password_field :password_confirmation, class:"form-control"%>
+                </div>
+                <div class="col-auto">
+                    <span id="passwordHelpInline" class="form-text">
+                        Re-enter your password to update.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    <%end%>
+</div>

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
   namespace :users_backoffice do
     get 'welcome/index'
+    get 'profile', to: 'profile#edit'
+    patch 'profile', to: 'profile#update'
   end
   namespace :admins_backoffice do
     resources :admins
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
     get 'welcome/index'
   end
   devise_for :users
-  devise_for :admins, skip: [:registrations]
+  devise_for :admins
 
   get 'inicio', to: 'site/welcome#index'
   root to: 'site/welcome#index'
@@ -24,3 +26,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 end
+  

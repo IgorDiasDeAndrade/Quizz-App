@@ -24,7 +24,7 @@
       <% if user_signed_in? %>
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" style="color:white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%=current_user.email%>
+            <%= current_user.first_name == nil ? current_user.email : current_user.full_name%>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><%= link_to "Perfil", users_backoffice_welcome_index_path, class:"dropdown-item"%>
@@ -37,10 +37,6 @@
         <%= link_to "Cadastro", new_user_registration_path, class:"nav-link", style:"color:white"%>
         
       <% end %>
-
-      
-      
     </div>
   </div>
 </nav>
-<p></p>
