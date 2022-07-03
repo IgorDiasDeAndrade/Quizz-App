@@ -31,6 +31,38 @@
                 </div>
             </div>
 
+            <%= form.fields_for :user_profile do |profile_form| %>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-form-label col-md-1 col-sm-3 label-align">
+                    <%= profile_form.label :address, class:"col-form-label"%>
+                </div>
+                <div class="col-md-5 col-sm-6">
+                    <%= profile_form.text_field :address, class:"form-control"%>
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-form-label col-md-1 col-sm-3 label-align">
+                    <%= profile_form.label :gender, class:"col-form-label"%>
+                </div>
+                <div class="col-md-5 col-sm-6">
+                    <%= profile_form.radio_button :gender, "M", "data-parsley-multiple":"gender"%> &nbsp; Male &nbsp;
+                    <%= profile_form.radio_button :gender, "F", "data-parsley-multiple":"gender"%> &nbsp; Female &nbsp;
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-form-label col-md-1 col-sm-3 label-align">
+                    <%= profile_form.label :birthdate, class:"col-form-label"%>
+                </div>
+                <div class="col-md-5 col-sm-6">
+                    <%= profile_form.date_field :birthdate, class:"form-control"%>
+                </div>
+            </div>
+
+            <%end%>
+
             <div class="row g-3 align-items-center">
                 <div class="col-form-label col-md-1 col-sm-3 label-align">
                     <%= form.label :password, class:"col-form-label"%>

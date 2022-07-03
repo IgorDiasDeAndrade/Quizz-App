@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_29_220829) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_03_163712) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -47,6 +47,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_220829) do
     t.integer "questions_count"
   end
 
+  create_table "user_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "address"
+    t.string "gender"
+    t.date "birthdate"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -63,4 +73,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_220829) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "subjects"
+  add_foreign_key "user_profiles", "users"
 end
