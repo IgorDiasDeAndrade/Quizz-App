@@ -5,6 +5,10 @@
     <%= form_with(url: users_backoffice_profile_path, model: @user, local: true) do |form|%>
         <div class="row gx-lg-5 align-items-left">
             <div class="row g-3 align-items-center">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Change profile photo
+                </button>
                 <div class="col-form-label col-md-1 col-sm-3 label-align">
                     <%= form.label :first_name, class:"col-form-label"%>
                 </div>
@@ -33,33 +37,60 @@
 
             <%= form.fields_for :user_profile do |profile_form| %>
 
-            <div class="row g-3 align-items-center">
-                <div class="col-form-label col-md-1 col-sm-3 label-align">
-                    <%= profile_form.label :address, class:"col-form-label"%>
+                <div class="row g-3 align-items-center">
+                    <div class="col-form-label col-md-1 col-sm-3 label-align">
+                        <%= profile_form.label :address, class:"col-form-label"%>
+                    </div>
+                    <div class="col-md-5 col-sm-6">
+                        <%= profile_form.text_field :address, class:"form-control"%>
+                    </div>
                 </div>
-                <div class="col-md-5 col-sm-6">
-                    <%= profile_form.text_field :address, class:"form-control"%>
-                </div>
-            </div>
 
-            <div class="row g-3 align-items-center">
-                <div class="col-form-label col-md-1 col-sm-3 label-align">
-                    <%= profile_form.label :gender, class:"col-form-label"%>
+                <div class="row g-3 align-items-center">
+                    <div class="col-form-label col-md-1 col-sm-3 label-align">
+                        <%= profile_form.label :gender, class:"col-form-label"%>
+                    </div>
+                    <div class="col-md-5 col-sm-6">
+                        <%= profile_form.radio_button :gender, "M", "data-parsley-multiple":"gender"%> &nbsp; Male &nbsp;
+                        <%= profile_form.radio_button :gender, "F", "data-parsley-multiple":"gender"%> &nbsp; Female &nbsp;
+                    </div>
                 </div>
-                <div class="col-md-5 col-sm-6">
-                    <%= profile_form.radio_button :gender, "M", "data-parsley-multiple":"gender"%> &nbsp; Male &nbsp;
-                    <%= profile_form.radio_button :gender, "F", "data-parsley-multiple":"gender"%> &nbsp; Female &nbsp;
-                </div>
-            </div>
 
-            <div class="row g-3 align-items-center">
-                <div class="col-form-label col-md-1 col-sm-3 label-align">
-                    <%= profile_form.label :birthdate, class:"col-form-label"%>
+                <div class="row g-3 align-items-center">
+                    <div class="col-form-label col-md-1 col-sm-3 label-align">
+                        <%= profile_form.label :birthdate, class:"col-form-label"%>
+                    </div>
+                    <div class="col-md-5 col-sm-6">
+                        <%= profile_form.date_field :birthdate, class:"form-control"%>
+                    </div>
                 </div>
-                <div class="col-md-5 col-sm-6">
-                    <%= profile_form.date_field :birthdate, class:"form-control"%>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Change profile photo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3 align-items-center">
+                                    <%= current_user.user_profile.avatar == nil ? image_tag("https://icon-library.com/images/default-profile-icon/default-profile-icon-5.jpg") : image_tag(current_user.user_profile.avatar)%>
+                                    <div class="col-form-label col-md-1 col-sm-3 label-align">
+                                        <%= profile_form.label :avatar %>
+                                    </div>
+                                    <div class="col-md-5 col-sm-6">
+                                        <%= profile_form.file_field :avatar %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <%= form.submit "Save changes", class:"btn btn-primary" %>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
             <%end%>
 
@@ -72,7 +103,7 @@
                 </div>
             </div>
 
-                        <div class="row g-3 align-items-center">
+                <div class="row g-3 align-items-center">
                 <div class="col-form-label col-md-1 col-sm-3 label-align">
                     <%= form.label :password_confirmation, class:"col-form-label"%>
                 </div>
@@ -84,6 +115,7 @@
                         Re-enter your password to update.
                     </span>
                 </div>
+
             </div>
         </div>
         <p></p>
