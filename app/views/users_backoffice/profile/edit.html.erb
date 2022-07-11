@@ -75,7 +75,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="row g-3 align-items-center">
-                                    <%= current_user.user_profile.avatar == nil ? image_tag("https://icon-library.com/images/default-profile-icon/default-profile-icon-5.jpg") : image_tag(current_user.user_profile.avatar)%>
+                                    <%=image_tag avatar_url, class:"rounded-circle"%>
                                     <div class="col-form-label col-md-1 col-sm-3 label-align">
                                         <%= profile_form.label :avatar %>
                                     </div>

@@ -78,7 +78,7 @@
             <hr>
             <div class="dropdown pb-4">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://icon-library.com/images/default-profile-icon/default-profile-icon-5.jpg" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                    <%= image_tag avatar_url, size: "30x30", class:"rounded-circle"%>
                     <span class="d-none d-sm-inline mx-1"><%= current_user.first_name == nil ? current_user.email : current_user.full_name%></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
