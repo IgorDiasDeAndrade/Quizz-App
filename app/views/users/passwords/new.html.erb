@@ -1,16 +1,26 @@
-<h2>Forgot your password?</h2>
+<section class="vh-100" style="background-color: hsl(0, 0%, 96%)">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-10">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5">
+              <h1 class="my-5 display-6 fw-bold ls-tight text-center">
+              <span class="text-primary">Forgot your password?</span></h1>
+              <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                <%= render "users/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <div class="field">
+                  <%= f.label :email, class:"form-label" %><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+                </div>
+                <p></p>  
+                <div class="actions">
+                  <%= f.submit "Send me reset password instructions", class:"btn btn-primary btn-block mb-4" %>
+                </div>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</section>
